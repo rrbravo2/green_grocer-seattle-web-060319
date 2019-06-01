@@ -20,7 +20,7 @@ def apply_coupons(cart, coupons)
    coupon_item_number = coupon[:number]
    cart_item = cart[coupon_name]
 
-    if cart_item.nil? || cart_item[:count] < coupon_item_number
+    next if cart_item.nil? || cart_item[:count] < coupon_item_number
    cart_item[:count] -= coupon_item_number
    coupon_in_cart = cart["#{coupon_name} W/COUPON"]
 
