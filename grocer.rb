@@ -15,9 +15,21 @@ end
 
 
 def apply_coupons(cart, coupons)
+ coupons.each do |coupon|
+   coupon_name = coupon[:item]
+   coupon_item_number = coupon[:number]
+   cart_item = cart[coupon_name]
+   next if cart_item.ni? || cart_item[:count] < coupon_item_number
+   cart_item[:count] -= coupon_item_number
+   coupon_in_cart = cart["#{coupon_name} W/COUPON"]
+   if coupon_in_cart
+     coupon_in_cart[:count] += 1
+      else cart["#{coupon_name} W/COUPON"] = {price: coupon[:cost], clearance: cart_item[:clearance], count: 1}
+     end
+   end
+  cart
+end 
 
-
-end
 
 def apply_clearance(cart)
   cart.each do |item, price_hash|
