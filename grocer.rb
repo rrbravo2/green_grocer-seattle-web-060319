@@ -27,7 +27,7 @@ def apply_coupons(cart, coupons)
    end
    total[food] = info
   end
-  result
+  total
 end
 
 
